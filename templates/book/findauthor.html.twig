@@ -1,0 +1,31 @@
+{{ form_start(f) }}
+{{ form_label(f.minb) }}
+{{ form_widget(f.minb) }}
+{{ form_label(f.maxb) }}
+{{ form_widget(f.maxb) }}
+{{ form_end(f) }}
+
+<table border="5"> 
+    <tr>
+        <td>title</td>
+        <td>publicationdate</td>
+        <td>published</td>
+        <td>nbrbook</td>
+        <td>author</td>
+        <td>action1</td>
+        <td>action2</td>
+        
+    </tr>
+    {% for i in books %}
+    <tr>
+        <td>{{i.title}}</td>
+        <td>{{ i.publicationdate|date() }}</td>
+        <td>{{i.published}}</td>
+        <td>{{i.nbrbook}}</td>
+        <td>{{i.author.username}}</td>
+        <td><a href="{{path('editbook',{'ref':i.ref})}}">edit</a></td>
+        <td><a href="{{path('deletbook',{'ref':i.ref})}}">delete</a></td>
+        
+    </tr>
+    {% endfor%}
+</table>
